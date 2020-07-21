@@ -26,20 +26,21 @@ object main {
 		else List[File]()
 	}
 	
-	def buildOutputFile(file: File, averageLuminosity: Float, extension: String) : File = {
+	def buildOutputFile(file: File, averageLuminosity: Float, extension: String, breakingPoint: Int) : File = {
 		val name = file.getName().replaceFirst("[.][^.]+$", "")
-		val darkOrBright = if (averageLuminosity > 72) "dark" else "bright"
+		val darkOrBright = if (averageLuminosity > breakingPoint) "dark" else "bright"
 		val newFile = new File("output/" + name + "_" + darkOrBright + "_" + averageLuminosity.toInt + "." + extension)
 		return newFile
 	}
 
 	def main(args: Array[String]) {
 		val files = getListOfFiles("input/")
+		val breakingPoint = args(0).toInt
 		for (file <- files) {
 			var image: BufferedImage = ImageIO.read(file)
 			var averageLuminosity: Float = getAverageLuminosity(image)
 			var extension: String = file.getName().toString.split("\\.").last
-			var outputFile = buildOutputFile(file, averageLuminosity, extension)
+			var outputFile = buildOutputFile(file, averageLuminosity, extension, breakingPoint)
 			ImageIO.write(image, extension, outputFile)
 		}
 	}
