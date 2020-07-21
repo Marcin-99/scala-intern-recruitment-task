@@ -4,6 +4,6 @@ Run imagesAnalysis from command line (Windows OS):
 
 Where breakingPoint is breaking point for darkness ratio.
 
-Optimal breakingPoint value: 72
+Optimal breakingPoint value: 72 (correctness 100%)
 
 ***scala imagesAnalysis.scala 72***
