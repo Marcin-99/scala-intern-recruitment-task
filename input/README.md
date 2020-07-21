@@ -1,0 +1,1 @@
+**Directory where the photos for analysis should be located.**
