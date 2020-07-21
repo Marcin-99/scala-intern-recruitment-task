@@ -35,13 +35,15 @@ object main {
 
 	def main(args: Array[String]) {
 		val files = getListOfFiles("input/")
-		val breakingPoint = args(0).toInt
-		for (file <- files) {
-			var image: BufferedImage = ImageIO.read(file)
-			var averageLuminosity: Float = getAverageLuminosity(image)
-			var extension: String = file.getName().toString.split("\\.").last
-			var outputFile = buildOutputFile(file, averageLuminosity, extension, breakingPoint)
-			ImageIO.write(image, extension, outputFile)
-		}
+		val breakingPoint = if (args.length == 1) args(0).toInt else -1
+		if (breakingPoint >= 0 && breakingPoint <= 100) {
+			for (file <- files) {
+				var image: BufferedImage = ImageIO.read(file)
+				var averageLuminosity: Float = getAverageLuminosity(image)
+				var extension: String = file.getName().toString.split("\\.").last
+				var outputFile = buildOutputFile(file, averageLuminosity, extension, breakingPoint)
+				ImageIO.write(image, extension, outputFile)
+			}
+		} else println("Wrong breakingPoint value. It should be between 0 and 100.")
 	}
 }
