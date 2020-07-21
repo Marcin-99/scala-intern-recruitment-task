@@ -1,5 +1,5 @@
-Run imagesAnalysis:
+Run imagesAnalysis from command line (Windows OS):
 
 ***scala imagesAnalysis.scala [breakingPoint]***
 
-where breakingPoint is breaking point for darkness ratio.
+Where breakingPoint is breaking point for darkness ratio.
